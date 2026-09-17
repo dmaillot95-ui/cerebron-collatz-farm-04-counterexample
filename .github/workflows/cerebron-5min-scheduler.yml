@@ -1,0 +1,24 @@
+name: CEREBRON Farm 04 5min Scheduler
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: cerebron-farm04-scheduler
+  cancel-in-progress: true
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch counterexample farm
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run counterexample-farm.yml --repo "${{ github.repository }}" --ref main
