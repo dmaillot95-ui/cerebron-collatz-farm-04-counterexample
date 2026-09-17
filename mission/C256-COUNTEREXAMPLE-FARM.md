@@ -1,23 +1,24 @@
-# CEREBRON OMEGA — COLLATZ FARM 04 COUNTEREXAMPLE — C256+
+# CEREBRON OMEGA — COLLATZ COUNTEREXAMPLE FARM — CHECKPOINT 2026-09-17
 
-MISSION
-Falsifier agressivement les verrous actuels sans confondre réfutation d'une méthode avec réfutation de Collatz.
+MISSION: falsify the current H-COUPLING / H-LOG / small-h program. Do not prove by search; use finite computation only to kill false universal claims.
 
-CHECKPOINT
-Map accélérée impaire: T(x)=(3x+1)/2^{v2(3x+1)}.
-Mot de valuations a_0,...,a_{n-1}; A_k=sum_{i<k} a_i.
-Formule exacte: 2^{A_k}x_k=3^k x_0+C_k, C_0=0, C_{k+1}=3C_k+2^{A_k}.
-Mots mécaniques/quasi critiques: A_k=floor(k log_2(3)+theta) ou variantes équilibrées.
-Verrou courant: compatibilité simultanée fenêtre réelle first-return + cylindre 2-adique + endpoint 3-adique + structure Sturmienne.
-CYCLES OPEN.
+Claims under attack:
+1. any proposed monotone potential on (u,r,h);
+2. any statement small h => large r without precise quantifiers;
+3. any claim that exceptional 3-adic valuations are globally rare;
+4. any collective H-LOG upper bound stronger than termwise h>=5;
+5. any LOWER>UPPER collision claim;
+6. any arithmetic-compression transformation used by other farms.
 
-OBJECTIFS
-1. Chercher des familles arbitrairement longues qui satisfont toute sous-collection des contraintes mais cassent la conclusion attendue.
-2. Construire des contre-exemples aux lemmes trop forts: contraction uniforme, gap d'arc uniforme, résidu normalisé uniformément positif, obstruction CRT locale, etc.
-3. Identifier précisément la première hypothèse qui échoue dans chaque argument.
-4. Tester les mots floor/ceil one-crossing et leurs phases theta.
-5. Séparer: contre-exemple fini; famille infinie prouvée; heuristique; simple anomalie numérique.
-6. Ne jamais annoncer un cycle Collatz sans vérification exacte intégrale complète.
+Exact constraints to preserve while generating examples:
+- 3^u t - 1 = 4^r h;
+- 2^{u_next} t_next - 1 = 3^r h;
+- h odd, h≡5 mod6;
+- H-COUPLING: 2^{u_next+2r_next}h_next-3^{u_next+r}h=3^{u_next}-2^{u_next};
+- h≡-4^{-r} mod 3^u.
 
-SORTIE ATTENDUE
-Chaque rôle doit retourner: CLAIM ATTAQUÉ; CONSTRUCTION; CALCUL/ARGUMENT; STATUT PROUVÉ/HYPOTHÈSE/INCONNU; IMPACT SUR LE PROGRAMME.
+Search priorities: u=1, r=1, h=5,11,17; exceptional valuations; imprimitive words; adjacent-run compatibility; cases that maximize H-LOG contribution.
+
+ARITHMETIC COMPRESSION RED TEAM: verify every claimed reduction. Attack factorization, caching, recurrence indexing, modular pruning, log approximations, precision and hidden recomputation. An optimization without exact equivalence is REJECTED.
+
+Output: CLAIM / ATTACK / COUNTEREXAMPLE OR NO COUNTEREXAMPLE FOUND / UNIVERSAL STATUS / CORRECTION / NEXT ATTACK. Absence of counterexample is not proof.
